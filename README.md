@@ -1,18 +1,22 @@
 Canvas Input
 ===========
-This library allows you to create input boxes without using the standard HTML DOM element <input>, instead through use of a <canvas> element. 
+This library allows you to create input boxes without using the standard HTML DOM element &lt;input&gt;, instead through use of a &lt;canvas&gt; element. 
 
 I initially created this for [Clay.io](http://clay.io), a hub for HTML5 games. We offer an API for game developers to implement features like high scores, achievements, data storage, payment
 processing, etc. in their HTML5 games. There are a few services out there that boost performance for HTML5 games on mobile devices by eliminating the DOM completely, so we needed to develop
 a version of our API that plays nicely *without* the DOM. In doing so, we also needed a way to let users login to their Clay.io accounts, and thus this library was born.
 
 Another use-case for this might be to eliminate spammers without use of a captcha. At least at this point in time, they're not going to catch onto the fact that you are using 'fake' inputs
-in a <canvas> rather than using a <input>s, and won't be able to insert of a bunch of junk.
+in a &lt;canvas&gt; rather than using a &lt;input&gt;s, and won't be able to insert of a bunch of junk.
+
+Demo
+----
+You can play with a demo [here](http://clay.io/plugins/canvasinput/test.html).
 
 Installation
 -----------
-Put the following inbetween <head> and </head> (or just before the end of </body>, just wait til the page is loaded to call the classes)
-    <script type='text/javascript' src='src/canvasinput.js'></script>
+Put the following inbetween &lt;head&gt; and &lt;/head&gt; (or just before the end of &lt;/body&gt;, just wait til the page is loaded to call the classes)
+    &lt;script type='text/javascript' src='src/canvasinput.js'&gt;&lt;/script&gt;
 
 Usage
 -----
@@ -52,3 +56,7 @@ Standard submit button
             return alert( 'Submit button pressed' );
         } )
     } );
+    
+Support
+-------
+This has been tested IE9, Chrome, Firefox, Opera, Safari and Mobile Safari (and Chrome...)
