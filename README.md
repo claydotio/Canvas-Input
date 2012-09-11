@@ -16,21 +16,23 @@ You can play with a demo [here](http://clay.io/plugins/canvasinput/test.html).
 Installation
 -----------
 Put the following inbetween &lt;head&gt; and &lt;/head&gt; (or just before the end of &lt;/body&gt;, just wait til the page is loaded to call the classes)
+
     &lt;script type='text/javascript' src='src/canvasinput.js'&gt;&lt;/script&gt;
 
 Usage
 -----
 There are 3 classes you can use right now, `CanvasText`, `CavasPassword` and `CanvasSubmit`. When you call the class, pass the canvas DOM object for the first parameter, and an options object
 for the second parameter. The following options are available:
-* x (integer x position of the input in the canvas, pass 'center' to center it)
-* y (integer y position of the input in the canvas)
-* width (integer width value of box)
-* height (integer height value of box)
-* center (boolean, set `true` to align the text inside the box to the center. Default `false` for text and password, `true` for submit)
-* placeholder (string, default text for the box, this is cleared out when the input is focused)
-* onSubmit (function, only for CanvasSubmit, this function is called when the user clicks on the button, or the enter key is pressed from a CanvasInput)
+* x *(integer x position of the input in the canvas, pass 'center' to center it)*
+* y *(integer y position of the input in the canvas)*
+* width *(integer width value of box)*
+* height *(integer height value of box)*
+* center *(boolean, set `true` to align the text inside the box to the center. Default `false` for text and password, `true` for submit)*
+* placeholder *(string, default text for the box, this is cleared out when the input is focused)*
+* onSubmit *(function, only for CanvasSubmit, this function is called when the user clicks on the button, or the enter key is pressed from a CanvasInput)*
 
 Standard text input
+
     new CanvasText( canvas, {
         x: 'center',
         y: 120,
@@ -39,6 +41,7 @@ Standard text input
     } );
 
 Standard password input
+
     new CanvasPassword( canvas, {
         x: 'center',
         y: 155,
@@ -47,6 +50,7 @@ Standard password input
     } );
 
 Standard submit button
+
     new CanvasSubmit( canvas, {
         x: 'center',
         y: 195,
