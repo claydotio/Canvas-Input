@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>CanvasInput test page</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+	</head>
+
+	<body>
+		<canvas width='500' height='500' id='canvas'>&nbsp;</canvas>
+		<script type='text/javascript' src='src/canvasinput.js'></script>
+		<script type='text/javascript'>
+		new CanvasText( canvas, {
+			x: 20,
+			y: 20,
+			width: 300,
+			placeholder: 'Enter your username...'
+		} );
+	
+		new CanvasPassword( canvas, {
+			x: 20,
+			y: 55,
+			width: 300,
+			placeholder: 'Enter your password...'
+		} );
+	
+		new CanvasSubmit( canvas, {
+			x: 20,
+			y: 95,
+			width: 300,
+			placeholder: 'Submit',
+			onSubmit: ( function() {
+				return alert( 'Submit button pressed' );
+			} )
+		} );
+		</script>
+	</body>
+</html>
