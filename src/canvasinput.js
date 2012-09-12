@@ -142,7 +142,7 @@
       isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
       if (typeof CocoonJS !== 'undefined' && CocoonJS.Keyboard && CocoonJS.Keyboard.available) {
         CocoonJS.Keyboard.Types.TEXT();
-      } else if (isMobile && false && document && document.createElement && (input = document.createElement('input'))) {
+      } else if (isMobile && document && document.createElement && (input = document.createElement('input'))) {
         input.type = 'text';
         input.style.opacity = 0;
         input.style.position = 'absolute';
@@ -152,7 +152,7 @@
         document.body.appendChild(input);
         input.focus();
       } else if (isMobile) {
-        this.value = prompt(this.placeholder);
+        this.value = prompt(this.placeholder) || '';
       }
       if (this.value === this.placeholder) {
         this.value = '';

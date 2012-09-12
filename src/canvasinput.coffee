@@ -1,8 +1,5 @@
 class CanvasInput
-	fontSize = 12
-	padding = 5
 	@inputs = [] # static array of all input objects
-	# x value isn't used right now (we just center)
 	constructor: (options) ->		
 		x = options.x || 0
 		y = options.y || 0
@@ -10,6 +7,8 @@ class CanvasInput
 		@value = @placeholder
 		@width = options.width || 150
 		@height = options.height || 30
+		@fontSize = options.fontSize || 12
+		@padding = options.padding || 5
 		@onSubmit = options.onSubmit || ->
 		@center = options.center || false # centers text
 		@wasOver = false # used for cursor on mouseover (resetting to default)
@@ -63,27 +62,27 @@ class CanvasInput
 		@ctx.fillStyle = if @focused then '#efefef' else @defaultBackgroundColor
 		@ctx.fillRect @xPos, @yPos, @width, @height
 		@ctx.fillStyle = @defaultFontColor
-		@ctx.font = fontSize + 'px "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif'
+		@ctx.font = @fontSize + 'px "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif'
 		text = if @type == 'password' && @value != @placeholder then @value.replace( /./g, '\u25CF' ) else @value
 			
 		textWidth = @ctx.measureText( text ).width
 			
-		offset = padding
+		offset = @padding
 			
 		# make sure the text isn't too wide
-		if ( ratio = ( textWidth / ( @width - padding - 3 ) ) ) > 1 # the 3 is just an extra buffer
+		if ( ratio = ( textWidth / ( @width - @padding - 3 ) ) ) > 1 # the 3 is just an extra buffer
 			text = text.substr -1 * Math.floor( text.length / ratio )
 		else if @center
 			offset = @width / 2 - textWidth / 2
 			
-		@ctx.fillText text, @xPos + offset , @yPos + @height / 2 + fontSize / 2
+		@ctx.fillText text, @xPos + offset , @yPos + @height / 2 + @fontSize / 2
 		
 		if @cursorOn
 			@ctx.fillStyle = @defaultFontColor
 			cursorOffset = @ctx.measureText( text.substring( 0, @cursorPos ) ).width
 			if @center
-				cursorOffset += offset - padding
-			@ctx.fillRect @xPos + padding + cursorOffset, @yPos + padding, 1, @height - 2 * padding
+				cursorOffset += offset - @padding
+			@ctx.fillRect @xPos + @padding + cursorOffset, @yPos + @padding, 1, @height - 2 * @padding
 		
 		
 class @CanvasText extends CanvasInput
@@ -120,7 +119,7 @@ class @CanvasText extends CanvasInput
 		if typeof CocoonJS != 'undefined' && CocoonJS.Keyboard && CocoonJS.Keyboard.available
 			CocoonJS.Keyboard.Types.TEXT()
 		# if there's not an actual keyboard plugged in (mobile devices), AND the DOM isn't available
-		else if isMobile && false && document && document.createElement && input = document.createElement( 'input' )
+		else if isMobile && document && document.createElement && input = document.createElement( 'input' )
 			input.type = 'text'
 			input.style.opacity = 0
 			input.style.position = 'absolute'
@@ -130,7 +129,7 @@ class @CanvasText extends CanvasInput
 			document.body.appendChild input 
 			input.focus()
 		else if isMobile
-			@value = prompt( @placeholder )
+			@value = prompt( @placeholder ) || ''
 		
 		if @value == @placeholder
 			@value = ''

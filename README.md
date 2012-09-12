@@ -7,7 +7,7 @@ processing, etc. in their HTML5 games. There are a few services out there that b
 a version of our API that plays nicely *without* the DOM. In doing so, we also needed a way to let users login to their Clay.io accounts, and thus this library was born.
 
 Another use-case for this might be to eliminate spammers without use of a captcha. At least at this point in time, they're not going to catch onto the fact that you are using 'fake' inputs
-in a &lt;canvas&gt; rather than using a &lt;input&gt;s, and won't be able to insert of a bunch of junk.
+in a &lt;canvas&gt; rather than using &lt;input&gt;s, and won't be able to insert of a bunch of junk.
 
 Demo
 ----
@@ -27,6 +27,8 @@ for the second parameter. The following options are available:
 * **y** *(integer y position of the input in the canvas)*
 * **width** *(integer width value of box)*
 * **height** *(integer height value of box)*
+* **fontSize** *(integer font size - default 12)*
+* **padding** *(integer padding - default 5)*
 * **center** *(boolean, set `true` to align the text inside the box to the center. Default `false` for text and password, `true` for submit)*
 * **placeholder** *(string, default text for the box, this is cleared out when the input is focused)*
 * **onSubmit** *(function, only for CanvasSubmit, this function is called when the user clicks on the button, or the enter key is pressed from a CanvasInput)*
@@ -60,6 +62,13 @@ Standard submit button
             return alert( 'Submit button pressed' );
         } )
     } );
+    
+Modifying the source
+--------------------
+Feel free to pull request improvements to this library. Some things I can think of off the top of my head are support for select boxes, radio buttons
+and checkboxes, as well as support for clicking to move the cursor and select text.
+
+The library is written in CoffeeScript (`src/canvasinput.coffee`) and compiled to JavaScript (`src/canvasinput.javascript`)
     
 Support
 -------
