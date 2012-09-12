@@ -5,11 +5,6 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   CanvasInput = (function() {
-    var fontSize, padding;
-
-    fontSize = 12;
-
-    padding = 5;
 
     CanvasInput.inputs = [];
 
@@ -22,6 +17,8 @@
       this.value = this.placeholder;
       this.width = options.width || 150;
       this.height = options.height || 30;
+      this.fontSize = options.fontSize || 12;
+      this.padding = options.padding || 5;
       this.onSubmit = options.onSubmit || function() {};
       this.center = options.center || false;
       this.wasOver = false;
@@ -76,23 +73,23 @@
       this.ctx.fillStyle = this.focused ? '#efefef' : this.defaultBackgroundColor;
       this.ctx.fillRect(this.xPos, this.yPos, this.width, this.height);
       this.ctx.fillStyle = this.defaultFontColor;
-      this.ctx.font = fontSize + 'px "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif';
+      this.ctx.font = this.fontSize + 'px "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif';
       text = this.type === 'password' && this.value !== this.placeholder ? this.value.replace(/./g, '\u25CF') : this.value;
       textWidth = this.ctx.measureText(text).width;
-      offset = padding;
-      if ((ratio = textWidth / (this.width - padding - 3)) > 1) {
+      offset = this.padding;
+      if ((ratio = textWidth / (this.width - this.padding - 3)) > 1) {
         text = text.substr(-1 * Math.floor(text.length / ratio));
       } else if (this.center) {
         offset = this.width / 2 - textWidth / 2;
       }
-      this.ctx.fillText(text, this.xPos + offset, this.yPos + this.height / 2 + fontSize / 2);
+      this.ctx.fillText(text, this.xPos + offset, this.yPos + this.height / 2 + this.fontSize / 2);
       if (this.cursorOn) {
         this.ctx.fillStyle = this.defaultFontColor;
         cursorOffset = this.ctx.measureText(text.substring(0, this.cursorPos)).width;
         if (this.center) {
-          cursorOffset += offset - padding;
+          cursorOffset += offset - this.padding;
         }
-        return this.ctx.fillRect(this.xPos + padding + cursorOffset, this.yPos + padding, 1, this.height - 2 * padding);
+        return this.ctx.fillRect(this.xPos + this.padding + cursorOffset, this.yPos + this.padding, 1, this.height - 2 * this.padding);
       }
     };
 

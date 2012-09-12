@@ -182,7 +182,7 @@ class @CanvasText extends CanvasInput
 				if obj = CanvasInput.inputs[@inputIndex + 1]
 					setTimeout (-> obj.focus()), 1 # timeout so it doesn't skip completely past it
 			else if key = @mapKeyPressToActualCharacter e.shiftKey, e.which 
-				@value += key
+				@value = @value.substr( 0, @cursorPos ) + key + @value.substr( @cursorPos, @value.length )
 				@cursorPos++ # move the cursor to the right
 			
 			@cursorOn = cursorVal
