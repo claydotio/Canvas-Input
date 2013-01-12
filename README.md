@@ -35,21 +35,25 @@ for the second parameter. The following options are available:
 
 Standard text input
 
-    new CanvasText( canvas, {
+    var username = new CanvasText( canvas, {
         x: 'center',
         y: 120,
         width: 300,
         placeholder: 'Enter your username...'
     } );
+    // Access the value with:
+    console.log( username.value );
 
 Standard password input
 
-    new CanvasPassword( canvas, {
+    var password = new CanvasPassword( canvas, {
         x: 'center',
         y: 155,
         width: 300,
         placeholder: 'Enter your password...'
     } );
+    // Access the value with:
+    console.log( password.value );
 
 Standard submit button
 
